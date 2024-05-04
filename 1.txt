@@ -1,0 +1,53 @@
+ssh -p 30116 -D 2080 geek@router.packops.ir
+
+2----> ro servere khodemon va 3 ham hamintor
+3---> vim /etc/ssh/sshd_config
+
+4-----> nano ~/.ssh/authorized_keys
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDlKNbDVP6ZwkosjjUssnUD8LfS6wo4dy4meE2PYQMejcGuZtPWYvxvjiJ6vPkQMDyTr2xM1ktOjvMl2mioVW6ZIPN1cyT82BgRtQ4se0NopTrz2mQPLCh91eB6/qf4WrY+thvslO8SIndxqoWKtLVQf1dFgMYn8hy4+e2NJC4cGsPNh9tL4lCY2eum4EbapkbYne4UjChfj9UFsFCVAAtxbl9ijuHdeSgFcaN1CGZle9wlF4v2kTlkE7OwQr7xS47/DoHf9y13BCLyDg79bELKIvc14vwx4NrXG8z6VV1X67H1hGOgAl5jpw4ctvxHZNlbJndPhZ7nz3L61ebIJHDXAIUcfY7fiz00Q8pWlNXEyydjW9dWdzbjGYXcJd3Sv+oYh1uzYFYolobNSOdRY7UWkfoeKr4L84lohupAspuIyZscD9uYaotXIkUuxVdpO5q+CH33Qp7xgJjjlC4syozcFkR2wmYUAoZnGnyuyzRAejQaua8we0zFbp3NxNyBhyc= root@Admin-Stuff-1
+
+5--->service sshd restart
+
+6---->ssh geek@192.168.6.253   ---> az server khodemon
+   ---->ssh root@YOUR_SRV  -->6.116----> az admin staff mizanim
+
+7------->
+ssh geek@192.168.6.253
+sudo -i 
+
+——————————
+******sakhtare yaml
+----> ro servere admin stuff--->(253)
+
+mkdir -p /opt/YOUR_NAME/ansible/
+apt update && apt install ansible
+/opt/YOUR_NAME/ansible
+-------------------->rm -rf
+-------------------->ansible --version
+
+
+--------------------------------------
+-----------> ro servere admin stuff(253)
+-------->tasks and playbook------>(majmoe'e az taskha)
+vim install-nginx.yml
+- name: Installing Nginx
+  hosts: srv116
+  tasks:
+    - name: Install nginx
+      apt:
+        name:
+        - nginx
+        update_cache: true                    
+        state: latest  -------->(present,,absent==baraye pak kardan)
+
+
+-------------------------------------
+vim hosts    ---------------> (inventory)
+
+-------------------------------------
+---------->ro servere admin stuff(253)
+vim ./opt/taheri/ansible/hosts
+[linux-servers]
+srv120 ansible_ssh_host=192.168.6.120
+---------------------------------------
+ansible-playbook -i ./hosts install-nginx.yml
